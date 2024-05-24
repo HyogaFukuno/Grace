@@ -1,0 +1,16 @@
+{
+    "name": "Samples.Domain",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a95037881cd064bf98f08ef26d24ca24"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

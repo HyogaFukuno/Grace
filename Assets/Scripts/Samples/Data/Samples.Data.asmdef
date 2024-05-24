@@ -1,0 +1,18 @@
+{
+    "name": "Samples.Data",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0ac95969c3e4443f1b5a7ff023e2efe6",
+        "GUID:a95037881cd064bf98f08ef26d24ca24",
+        "GUID:26751c0ddcef045d1a237d7e1f27874a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

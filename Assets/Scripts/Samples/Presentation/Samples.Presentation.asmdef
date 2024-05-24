@@ -1,0 +1,23 @@
+{
+    "name": "Samples.Presentation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:01f0ac635c4ac4805b3325643bb0036c",
+        "GUID:e6d68d5cd3ee2415d8b1812c8012e8e4",
+        "GUID:0ac95969c3e4443f1b5a7ff023e2efe6",
+        "GUID:a95037881cd064bf98f08ef26d24ca24",
+        "GUID:26751c0ddcef045d1a237d7e1f27874a",
+        "GUID:fd228c28e14f1a34cbe508676c914dd7",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:e0cd26848372d4e5c891c569017e11f1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
