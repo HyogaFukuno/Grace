@@ -20,7 +20,7 @@ public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where
     public BinaryDataStore(string path)
     {
         this.path = path.Contains(".bin") ? path : throw new InvalidDataException();
-        entities = new List<TDataEntity>(capacity: 1);
+        entities = new List<TDataEntity>(capacity: 100);
     }
 
     void IDataStore<TDataEntity>.Load()

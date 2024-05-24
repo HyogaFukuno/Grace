@@ -5,16 +5,14 @@ using MemoryPack;
 
 namespace Samples.Data.DataEntity;
 
-[MemoryPackable]
-[MemoryPackUnion(0, typeof(UserEntity))]
-public partial interface IUserEntity : IDataEntity
+public interface IUserEntity : IDataEntity
 {
     string? Name { get; }
 }
 
 [MemoryPackable]
-public partial record UserEntity : IUserEntity
-{ 
+public readonly partial record struct UserEntity : IUserEntity
+{
     public Guid Id { get; init; }
     public string? Name { get; init; }
 }

@@ -3,8 +3,7 @@ using MemoryPack;
 
 namespace Grace.Runtime.Data.DataEntity;
 
-[MemoryPackable(GenerateType.NoGenerate)]
-public partial interface IDataEntity
+public interface IDataEntity
 {
     Guid Id { get; }
 }
