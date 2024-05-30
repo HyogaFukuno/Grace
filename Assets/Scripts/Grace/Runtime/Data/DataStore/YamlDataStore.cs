@@ -1,35 +1,38 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Grace.Runtime.Data.DataEntity;
 using Grace.Runtime.Extensions;
-using MemoryPack;
 using Microsoft.Extensions.Logging;
 using Unio;
 using Unity.Collections;
+using VYaml.Serialization;
 
 namespace Grace.Runtime.Data.DataStore;
 
-public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where TDataEntity : IDataEntity
+public sealed class YamlDataStore<TDataEntity> : IDataStore<TDataEntity> where TDataEntity : IDataEntity
 {
     readonly struct FileStatus
     {
         public bool Exists { get; init; }
     }
 
-    readonly ILogger<BinaryDataStore<TDataEntity>> logger;
+    readonly ILogger<YamlDataStore<TDataEntity>> logger;
     readonly string path;
+    readonly bool isByteWriter;
     FileStatus? fileStatus;
     List<TDataEntity>? entities;
 
     public bool HasLoaded { get; private set; }
     public List<TDataEntity>? Entities => entities;
 
-    public BinaryDataStore(ILogger<BinaryDataStore<TDataEntity>> logger, string path)
+    public YamlDataStore(ILogger<YamlDataStore<TDataEntity>> logger, string path, bool isByteWriter = false)
     {
         this.logger = logger;
-        this.path = path.Contains(".bin") ? path : throw new InvalidDataException("your specified path's extension is not allowed. allowed only [*.bin] extension.");
+        this.path = path.Contains(".yml") ? path : throw new InvalidDataException("your specified path's extension is not allowed. allowed only [*.yml] extension.");
+        this.isByteWriter = isByteWriter;
+        
         entities = new List<TDataEntity>(capacity: 100);
     }
 
@@ -45,8 +48,8 @@ public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where
         logger.LogTrace($"ファイルからEntity情報を読み込みます。");
 
         using var nativeArray = NativeFile.ReadAllBytes(path);
-        MemoryPackSerializer.Deserialize(nativeArray.AsReadOnlySpan(), ref entities);
-
+        entities = YamlSerializer.Deserialize<List<TDataEntity>>(nativeArray.AsMemory());
+        
         HasLoaded = true;
         
         logger.LogTrace($"ファイルから正常にEntity情報を読み込めました。");
@@ -78,17 +81,21 @@ public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where
         if (autoStore)
         {
             logger.LogTrace($"ファイルにEntity情報を保存します。");
+
+            if (isByteWriter)
+            {
+                using var bufferWriter = new NativeArrayBufferWriter<byte>(256, Allocator.Temp);
+                YamlSerializer.Serialize(bufferWriter, entities);
             
-            var bufferWriter = new NativeArrayBufferWriter<byte>(256, Allocator.Temp);
-            using var state = MemoryPackWriterOptionalStatePool.Rent(MemoryPackSerializerOptions.Default);
-            var writer = new MemoryPackWriter<NativeArrayBufferWriter<byte>>(ref bufferWriter, state);
-        
-            MemoryPackSerializer.Serialize(ref writer, in entities);
-            NativeFile.WriteAllBytes(path, bufferWriter.WrittenBuffer);
-            
+                var nativeArray = bufferWriter.WrittenBuffer;
+                NativeFile.WriteAllBytes(path, nativeArray);
+            }
+            else
+            {
+                File.WriteAllText(path, YamlSerializer.SerializeToString(entities));
+            }
+
             logger.LogTrace($"ファイルにEntity情報を正常に保存できました。");
-            
-            bufferWriter.Dispose();
         }
     }
 
@@ -109,7 +116,7 @@ public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where
         using var nativeArray = await NativeFile.ReadAllBytesAsync(path, cancellation: cancellation);
 #endif
         
-        MemoryPackSerializer.Deserialize(nativeArray.AsReadOnlySpan(), ref entities);
+        entities = YamlSerializer.Deserialize<List<TDataEntity>>(nativeArray.AsMemory());
 
         HasLoaded = true;
         
@@ -143,8 +150,18 @@ public sealed class BinaryDataStore<TDataEntity> : IDataStore<TDataEntity> where
         {
             logger.LogTrace($"ファイルにEntity情報を保存します。");
             
-            var nativeArray = new NativeArray<byte>(MemoryPackSerializer.Serialize(entities), Allocator.Temp);
-            await NativeFile.WriteAllBytesAsync(path, nativeArray).WithCancellation(cancellation);
+            if (isByteWriter)
+            {
+                using var bufferWriter = new NativeArrayBufferWriter<byte>(256, Allocator.Temp);
+                YamlSerializer.Serialize(bufferWriter, entities);
+            
+                var nativeArray = bufferWriter.WrittenBuffer;
+                await NativeFile.WriteAllBytesAsync(path, nativeArray).WithCancellation(cancellation);
+            }
+            else
+            {
+                await File.WriteAllTextAsync(path, YamlSerializer.SerializeToString(entities), cancellation);
+            }
          
             logger.LogTrace($"ファイルにEntity情報を正常に保存できました。");
         }

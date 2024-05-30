@@ -2,9 +2,11 @@
     "name": "Samples.Data",
     "rootNamespace": "",
     "references": [
+        "GUID:e6d68d5cd3ee2415d8b1812c8012e8e4",
         "GUID:0ac95969c3e4443f1b5a7ff023e2efe6",
         "GUID:a95037881cd064bf98f08ef26d24ca24",
-        "GUID:26751c0ddcef045d1a237d7e1f27874a"
+        "GUID:26751c0ddcef045d1a237d7e1f27874a",
+        "GUID:7053a494724a448f18e88a849a83c098"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

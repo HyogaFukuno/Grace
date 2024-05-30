@@ -3,20 +3,21 @@
     "rootNamespace": "",
     "references": [
         "GUID:a95037881cd064bf98f08ef26d24ca24",
+        "GUID:360deb518da53cb4883bf9a1f2662ec6",
         "GUID:26751c0ddcef045d1a237d7e1f27874a",
-        "GUID:2665a8d13d1b3f18800f46e256720795",
-        "GUID:e0cd26848372d4e5c891c569017e11f1",
-        "GUID:fd228c28e14f1a34cbe508676c914dd7",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:8b304d29b70804806bbda53a7e5cf3e1",
         "GUID:756335c0388f7114790e504ed368ae1d",
-        "GUID:8b304d29b70804806bbda53a7e5cf3e1"
+        "GUID:7053a494724a448f18e88a849a83c098"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
+        "Microsoft.Extensions.Logging.Abstractions.dll",
         "System.Text.Json.dll",
+        "System.Text.Encodings.Web.dll",
         "MemoryPack.Core.dll"
     ],
     "autoReferenced": true,

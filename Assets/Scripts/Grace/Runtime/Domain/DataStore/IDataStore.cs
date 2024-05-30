@@ -7,6 +7,7 @@ namespace Grace.Runtime.Data.DataStore;
 
 public interface IDataStore<TDataEntity> where TDataEntity : IDataEntity
 {
+    bool HasLoaded { get; }
     List<TDataEntity>? Entities { get; }
 
     void Load();

@@ -1,18 +1,15 @@
 using System;
-using System.Buffers;
-using Grace.Runtime.Data.DataEntity;
 using MemoryPack;
+using VYaml.Annotations;
 
 namespace Samples.Data.DataEntity;
 
-public interface IUserEntity : IDataEntity
-{
-    string? Name { get; }
-}
-
 [MemoryPackable]
+[YamlObject]
 public readonly partial record struct UserEntity : IUserEntity
 {
     public Guid Id { get; init; }
     public string? Name { get; init; }
+    public DateTime CreatedTimestamp { get; init; }
+    public DateTime UpdatedTimestamp { get; init; }
 }
