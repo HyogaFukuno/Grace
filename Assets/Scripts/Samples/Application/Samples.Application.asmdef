@@ -1,0 +1,23 @@
+{
+    "name": "Samples.Application",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0ac95969c3e4443f1b5a7ff023e2efe6",
+        "GUID:a95037881cd064bf98f08ef26d24ca24",
+        "GUID:b4dab5a08635d484085274078da6f118",
+        "GUID:01f0ac635c4ac4805b3325643bb0036c",
+        "GUID:e6d68d5cd3ee2415d8b1812c8012e8e4",
+        "GUID:9c5751d0d8e7a4b0ba8d7428407712f9",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:2b78dc61ba35e42c39ba2aabce11b6c4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

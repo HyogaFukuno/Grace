@@ -11,7 +11,7 @@
 /[Uu]ser[Ss]ettings/
 
 # NuGetForUnity's Packages
-Assets/Packages/
+!Assets/Packages/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
