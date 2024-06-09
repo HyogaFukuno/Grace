@@ -65,4 +65,16 @@ public static class ListExtensions
             }
         }
     }
+
+    public static void ForEach<T>(this List<T> source, Action<T, int> action)
+    {
+        var index = 0;
+        foreach (var element in source)
+        {
+            action.Invoke(element, index++);
+        }
+    }
+
+    public static void Prepend<T>(this List<T> source, T element) => source.Insert(0, element);
+    
 }

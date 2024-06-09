@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace Samples.Application.Installer
 {
-    public class FooLifetimeScope : LifetimeScope
+    public sealed class FooLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {

@@ -4,11 +4,13 @@ using VContainer.Unity;
 
 namespace Samples.Presentation;
 
-public sealed class RootServiceLocator : IServiceLocator
+public readonly struct RootServiceLocator : IServiceLocator
 {
-    LifetimeScope? root;
+    static LifetimeScope Root => VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance();
 
-    LifetimeScope Root => root ??= VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance();
+    public RootServiceLocator()
+    {
+    }
 
     public T Resolve<T>() => Root.Container.Resolve<T>();
 }

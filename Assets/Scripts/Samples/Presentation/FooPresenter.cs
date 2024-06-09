@@ -28,19 +28,21 @@ public sealed class FooPresenter : IInitializable
         var findUseCase = new UserFindUseCase<UserEntity>(repository);
         var storeUseCase = new UserStoreUseCase<UserEntity>(repository);
 
-        // storeUseCase.Store(new UserEntity
-        // {
-        //     Id = Guid.NewGuid(),
-        //     Name = "Glacier",
-        //     CreatedTimestamp = DateTime.Now,
-        //     UpdatedTimestamp = DateTime.Now
-        // }, true);
+        storeUseCase.Store(new UserEntity
+        {
+            Id = Guid.NewGuid(),
+            Name = "Hyouga",
+            CreatedTimestamp = DateTime.Now,
+            UpdatedTimestamp = DateTime.Now
+        }, true);
 
         //var id = Guid.Parse("793cac56-e306-490a-97b8-12424b7e290d".AsSpan());
-        var user = findUseCase.Find("Glacier");
+        //var user = findUseCase.Find("Hyouga");
+        //user = user with { UpdatedTimestamp = DateTime.Now };
+        //logger.LogTrace($"アカウント作成日時は {user.CreatedTimestamp:g} アカウント直近更新日時は {user.UpdatedTimestamp:g}");
         
         // //
         // //
-        storeUseCase.Store(user with { UpdatedTimestamp = DateTime.Now }, true);
+        //storeUseCase.Store(user, true);
     }
 }

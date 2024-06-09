@@ -349,6 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370559696}
   - component: {fileID: 1370559695}
+  - component: {fileID: 1370559697}
   m_Layer: 0
   m_Name: Foo Lifetime Scope
   m_TagString: Untagged
@@ -371,7 +372,8 @@ MonoBehaviour:
   parentReference:
     TypeName: 
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 1370559694}
 --- !u!4 &1370559696
 Transform:
   m_ObjectHideFlags: 0
@@ -387,6 +389,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1370559697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370559694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565b4add0827473c8400ccf4e83b434f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
